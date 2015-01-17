@@ -8,4 +8,5 @@
 .custom-color span{
     padding:0px 10px;
     display:inline-block;
+    min-width:150px;
 }
