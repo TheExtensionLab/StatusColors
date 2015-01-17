@@ -1,5 +1,9 @@
 <?php class TheExtensionLab_StatusColors_Model_Observer
 {
+    /**
+     * @param Varien_Event_Observer $observer
+     * @return $this
+     */
     public function adminhtmlBlockHtmlBefore(Varien_Event_Observer $observer)
     {
         $block = $observer->getEvent()->getBlock();
@@ -33,8 +37,14 @@
                 }
             }
         }
+
+        return $this;
     }
 
+    /**
+     * @param Varien_Event_Observer $observer
+     * @return $this
+     */
     public function coreBlockAbstractToHtmlAfter(Varien_Event_Observer $observer)
     {
         $block = $observer->getEvent()->getBlock();
@@ -49,8 +59,14 @@
                 $transport->setHtml($html);
                 break;
         }
+
+        return $this;
     }
 
+    /**
+     * @param Varien_Event_Observer $observer
+     * @return $this
+     */
     public function controllerActionPredispatchAdminhtmlSystemConfigEdit(Varien_Event_Observer $observer)
     {
         $section = $observer->getEvent()->getControllerAction()->getRequest()->getParam('section');
@@ -65,9 +81,15 @@
                 }
                 break;
         }
+
+        return $this;
     }
 
 
+    /**
+     * @param $section
+     * @return bool
+     */
     protected function _isSectionAllowed($section)
     {
         try {

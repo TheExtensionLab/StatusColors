@@ -2,6 +2,9 @@
 {
     protected $_statusCollection = null;
 
+    /**
+     * @return array
+     */
     public function getStatusColumn()
     {
         $column = array(
@@ -16,6 +19,9 @@
         return $column;
     }
 
+    /**
+     * @return array
+     */
     public function getStatusColorColumn()
     {
         $column = array(
@@ -73,6 +79,9 @@
         return $status->getColor();
     }
 
+    /**
+     * @return Mage_Sales_Model_Resource_Order_Status_Collection|null
+     */
     protected function _getStatusCollection()
     {
         if($this->_statusCollection === null){
