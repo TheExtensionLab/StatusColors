@@ -2,4 +2,5 @@ app/code/community/TheExtensionLab/StatusColors/  app/code/community/TheExtensio
 app/design/adminhtml/default/default/layout/theextensionlab/statuscolors.xml    app/design/adminhtml/default/default/layout/theextensionlab/statuscolors.xml
 app/etc/modules/TheExtensionLab_StatusColors.xml    app/etc/modules/TheExtensionLab_StatusColors.xml
 js/theextensionlab/adminhtml/jscolor/   js/theextensionlab/adminhtml/jscolor/
+js/theextensionlab/statuscolors/    js/theextensionlab/statuscolors/
 skin/adminhtml/default/default/theextensionlab/statuscolors/grid.css skin/adminhtml/default/default/theextensionlab/statuscolors/grid.css
