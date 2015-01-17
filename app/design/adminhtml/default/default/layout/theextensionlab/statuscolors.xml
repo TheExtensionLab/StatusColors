@@ -1,6 +1,12 @@
 <?xml version="1.0"?>
 <layout>
 
+    <adminhtml_sales_order_status_edit>
+        <reference name="head">
+            <action method="addJs"><file>theextensionlab/adminhtml/jscolor/jscolor.js</file></action>
+        </reference>
+    </adminhtml_sales_order_status_edit>
+
     <!-- main layout definition that adds the column -->
     <add_order_grid_column_handle>
         <reference name="sales_order.grid">

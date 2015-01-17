@@ -21,6 +21,7 @@
                             array(
                                 'name'      => 'color',
                                 'label'     => Mage::helper('sales')->__('Status Color'),
+                                'class'     => 'color {hash:true}'
                             )
                         );
 
