@@ -11,3 +11,8 @@ To uninstall this extension you need to run the following SQL after removing the
 ```sql
   ALTER TABLE `sales_order_status` DROP `color`;
 ```
+Developer
+--------------
+James Anelay - TheExtensionLab
+http://www.theextensionlab.com
+@JamesAnelay - @TheExtensionLab
