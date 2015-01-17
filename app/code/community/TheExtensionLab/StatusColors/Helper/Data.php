@@ -5,7 +5,7 @@
     public function getStatusColumn()
     {
         $column = array(
-            'header' => Mage::helper('sales')->__('Status 2'),
+            'header' => Mage::helper('sales')->__('Status'),
             'index' => 'status',
             'type'  => 'options',
             'width' => '70px',
@@ -33,7 +33,7 @@
      * Decorate status column values - but don't load collection as we don't need to.
      * @return string
      */
-    public function decorateStatusUsingRowData($value, $row, $column, $isExport)
+    public function decorateStatusUsingRowData($value)
     {
         $statusHtml = '<span class="custom-color" style="background-color:'.$value.';"><span>'.$value.'</span></span>';
         return $statusHtml;
@@ -44,7 +44,7 @@
      *
      * @return string
      */
-    public function decorateStatus($value, $row, $column, $isExport)
+    public function decorateStatus($value, $row)
     {
         $rowStatus = $row->getStatus();
 
