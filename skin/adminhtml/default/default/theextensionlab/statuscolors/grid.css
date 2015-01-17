@@ -8,5 +8,8 @@
 .custom-color span{
     padding:0px 10px;
     display:inline-block;
+}
+
+.grid .custom-color span{
     min-width:150px;
 }
