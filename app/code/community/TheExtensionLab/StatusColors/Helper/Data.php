@@ -23,10 +23,20 @@
             'type'  => 'text',
             'index' => 'color',
             'width'     => '200px',
-            'frame_callback' => array($this, 'decorateStatus')
+            'frame_callback' => array($this, 'decorateStatusUsingRowData')
         );
 
         return $column;
+    }
+
+    /**
+     * Decorate status column values - but don't load collection as we don't need to.
+     * @return string
+     */
+    public function decorateStatusUsingRowData($value, $row, $column, $isExport)
+    {
+        $statusHtml = '<span class="custom-color" style="background-color:'.$value.';"><span>'.$value.'</span></span>';
+        return $statusHtml;
     }
 
     /**
