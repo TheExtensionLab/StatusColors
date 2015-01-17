@@ -3,12 +3,13 @@
     public function getStatusColumn()
     {
         $column = array(
-            'header' => Mage::helper('sales')->__('Status'),
+            'header' => Mage::helper('sales')->__('Status 2'),
             'index' => 'status',
             'type'  => 'options',
             'width' => '70px',
             'options'   => Mage::getSingleton('sales/order_config')->getStatuses(),
-            'renderer'  => 'theextensionlab_statuscolors/adminhtml_sales_grid_renderer_status'
+//            'renderer'  => 'theextensionlab_statuscolors/adminhtml_sales_grid_renderer_status'
+            'frame_callback' => array($this, 'decorateStatus')
         );
 
         return $column;
@@ -21,10 +22,30 @@
             'type'  => 'text',
             'index' => 'color',
             'width'     => '200px',
-            'renderer'  => 'theextensionlab_statuscolors/adminhtml_sales_order_status_grid_renderer_color'
+            'frame_callback' => array($this, 'decorateStatus')
         );
 
         return $column;
+    }
+
+    /**
+     * Decorate status column values
+     *
+     * @return string
+     */
+    public function decorateStatus($value, $row, $column, $isExport)
+    {
+        $status = $row->getStatus();
+
+        $item = Mage::getModel('sales/order_status')->load($status);
+        if($item->getColor()) {
+            $customColor = $item->getColor();
+            $statusHtml = '<span class="custom-color" style="background-color:'.$customColor.';"><span>'.$value.'</span></span>';
+
+            return $statusHtml;
+        }
+
+        return;
     }
 
     /**

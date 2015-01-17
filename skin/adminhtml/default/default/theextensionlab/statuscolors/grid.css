@@ -1,4 +1,10 @@
 .custom-color{
-    border-radius:4px;
-    padding:2px 6px;
+    border-radius:14px;
+    width:100%;
+    display:inline-block;
+    text-align:center;
+}
+
+.custom-color span{
+    padding:0px 10px;
 }

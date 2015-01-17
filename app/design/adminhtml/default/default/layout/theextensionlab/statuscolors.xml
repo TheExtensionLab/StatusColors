@@ -25,7 +25,7 @@
     <add_order_grid_column_handle>
         <reference name="sales_order.grid">
             <action method="addColumnAfter">
-                <columnId>status_with_colors</columnId>
+                <columnId>status_with_color</columnId>
                 <arguments helper="theextensionlab_statuscolors/data/getStatusColumn"/>
                 <after>grand_total</after>
             </action>
