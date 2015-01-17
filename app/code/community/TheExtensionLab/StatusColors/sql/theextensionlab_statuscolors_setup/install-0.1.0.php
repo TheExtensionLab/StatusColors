@@ -1,8 +1,6 @@
 <?php
-/**
- *
- */
-//die('not complete');
+
+/** @var $installer TheExtensionLab_StatusColors_Model_Resource_Setup */
 $installer = $this;
 
 $installer->startSetup();
