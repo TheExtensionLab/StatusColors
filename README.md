@@ -5,6 +5,14 @@ Compatibility
 -------------
 - Magento >= 1.6
 
+Extension Overview
+------------------
+Modman: Yes
+Composer: (Not Yes)
+GitHub: Private
+Core Hacks: 0
+Class Rewrites: 0
+
 Uninstallation
 --------------
 To uninstall this extension you need to run the following SQL after removing the extension files a list of which can be found in the modman file:
