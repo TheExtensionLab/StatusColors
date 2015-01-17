@@ -16,6 +16,7 @@
                 switch($element->getId()){
                     case "base_fieldset":
 
+
                         $element->addField('color', 'text',
                             array(
                                 'name'      => 'color',
@@ -23,6 +24,10 @@
                             )
                         );
 
+                        $model = Mage::registry('current_status');
+                        if ($model) {
+                            $form->addValues($model->getData());
+                        }
                         break;
                 }
             }
