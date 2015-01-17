@@ -14,8 +14,10 @@ To uninstall this extension you need to run the following SQL after removing the
 Developer
 --------------
 James Anelay - TheExtensionLab
+
 [http://www.theextensionlab.com](http://www.theextensionlab.com)
-@JamesAnelay - @TheExtensionLab
+
+[@JamesAnelay](https://twitter.com/jamesanelay) - [@TheExtensionLab](https://twitter.com/TheExtensionLab)
 
 Copyright
 ---------
