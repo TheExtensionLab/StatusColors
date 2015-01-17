@@ -1,5 +1,5 @@
 # StatusColors
-Adds colours to Magento Statuses.
+Adds colours to Magento Order Statuses, so that merchants can see at a glace what status an order is on. (Avaliable for Magento versions 1.6 upwards)
 
 Compatibility
 -------------
