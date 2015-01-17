@@ -16,3 +16,7 @@ Developer
 James Anelay - TheExtensionLab
 http://www.theextensionlab.com
 @JamesAnelay - @TheExtensionLab
+
+Copyright
+---------
+(c) 2014 TheExtensionLab
