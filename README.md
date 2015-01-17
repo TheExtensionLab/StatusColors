@@ -8,9 +8,13 @@ Compatibility
 Extension Overview
 ------------------
 Modman: Yes
+
 Composer: (Not Yes)
+
 GitHub: Private
+
 Core Hacks: 0
+
 Class Rewrites: 0
 
 Uninstallation
