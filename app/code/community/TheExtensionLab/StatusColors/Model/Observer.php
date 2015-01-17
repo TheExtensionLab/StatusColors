@@ -35,6 +35,22 @@
         }
     }
 
+    public function coreBlockAbstractToHtmlAfter(Varien_Event_Observer $observer)
+    {
+        $block = $observer->getEvent()->getBlock();
+
+        switch($block->getNameInLayout()) {
+            case "order_info":
+                $transport = $observer->getEvent()->getTransport();
+                $html = $transport->getHtml();
+                $customColor = Mage::helper('theextensionlab_statuscolors')->getStatusColor($block->getOrder()->getStatus());
+                $html = preg_replace('/id="order_status"/', 'id="order_status" class="custom-color" style="background-color:'.$customColor.';"', $html);
+
+                $transport->setHtml($html);
+                break;
+        }
+    }
+
     public function controllerActionPredispatchAdminhtmlSystemConfigEdit(Varien_Event_Observer $observer)
     {
         $section = $observer->getEvent()->getControllerAction()->getRequest()->getParam('section');

@@ -59,6 +59,15 @@
                 </observers>
             </adminhtml_block_html_before>
 
+            <core_block_abstract_to_html_after>
+                <observers>
+                    <theextensionlab_statuscolors>
+                        <class>TheExtensionLab_StatusColors_Model_Observer</class>
+                        <method>coreBlockAbstractToHtmlAfter</method>
+                    </theextensionlab_statuscolors>
+                </observers>
+            </core_block_abstract_to_html_after>
+
             <controller_action_predispatch_adminhtml_system_config_edit>
                 <observers>
                     <theextensionlab_statuscolors>

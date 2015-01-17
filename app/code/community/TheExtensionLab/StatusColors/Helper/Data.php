@@ -26,4 +26,17 @@
 
         return $column;
     }
+
+    /**
+     * Retrieve status color
+     *
+     * @param   string $code
+     * @return  string
+     */
+    public function getStatusColor($code)
+    {
+        $status = Mage::getModel('sales/order_status')
+            ->load($code);
+        return $status->getColor();
+    }
 }

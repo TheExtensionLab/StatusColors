@@ -55,4 +55,8 @@
         </reference>
     </adminhtml_sales_order_status_index>
 
+    <adminhtml_sales_order_view>
+        <update handle="add_status_color_css_handle" />
+    </adminhtml_sales_order_view>
+
 </layout>
