@@ -7,6 +7,12 @@
         </reference>
     </adminhtml_sales_order_status_edit>
 
+    <adminhtml_sales_order_index>
+        <reference name="head">
+            <action method="addCss"><file>theextensionlab/statuscolors/grid.css</file></action>
+        </reference>
+    </adminhtml_sales_order_index>
+
     <!-- main layout definition that adds the column -->
     <add_order_grid_column_handle>
         <reference name="sales_order.grid">

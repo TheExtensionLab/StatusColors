@@ -18,7 +18,7 @@ class TheExtensionLab_StatusColors_Block_Adminhtml_Sales_Grid_Renderer_Status ex
             $customColor = $item->getColor();
         }
 
-        $statusHtml = '<span class="custom-color" style="border-radius:4px;padding:2px 6px;background-color:'.$customColor.';">'.$status.'</span>';
+        $statusHtml = '<span class="custom-color" style="background-color:'.$customColor.';">'.$status.'</span>';
         return $statusHtml;
     }
 
