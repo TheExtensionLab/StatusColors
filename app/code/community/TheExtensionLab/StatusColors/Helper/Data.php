@@ -3,7 +3,7 @@
     public function getStatusColumn()
     {
         $column = array(
-            'header' => Mage::helper('sales')->__('Status'),
+            'header' => Mage::helper('sales')->__('Status Colors'),
             'index' => 'status',
             'type'  => 'options',
             'width' => '70px',
