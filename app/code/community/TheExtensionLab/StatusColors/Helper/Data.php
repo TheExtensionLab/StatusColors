@@ -1,5 +1,7 @@
 <?php class TheExtensionLab_StatusColors_Helper_Data extends Mage_Core_Helper_Abstract
 {
+    protected $_statusCollection = null;
+
     public function getStatusColumn()
     {
         $column = array(
@@ -8,7 +10,6 @@
             'type'  => 'options',
             'width' => '70px',
             'options'   => Mage::getSingleton('sales/order_config')->getStatuses(),
-//            'renderer'  => 'theextensionlab_statuscolors/adminhtml_sales_grid_renderer_status'
             'frame_callback' => array($this, 'decorateStatus')
         );
 
@@ -35,17 +36,18 @@
      */
     public function decorateStatus($value, $row, $column, $isExport)
     {
-        $status = $row->getStatus();
+        $rowStatus = $row->getStatus();
 
-        $item = Mage::getModel('sales/order_status')->load($status);
-        if($item->getColor()) {
-            $customColor = $item->getColor();
-            $statusHtml = '<span class="custom-color" style="background-color:'.$customColor.';"><span>'.$value.'</span></span>';
-
-            return $statusHtml;
+        $statusCollection = $this->_getStatusCollection();
+        foreach($statusCollection as $status){
+            if($status->getStatus() == $rowStatus){
+                $customColor = $status->getColor();
+            }
         }
 
-        return;
+        $statusHtml = '<span class="custom-color" style="background-color:'.$customColor.';"><span>'.$value.'</span></span>';
+
+        return $statusHtml;
     }
 
     /**
@@ -59,5 +61,13 @@
         $status = Mage::getModel('sales/order_status')
             ->load($code);
         return $status->getColor();
+    }
+
+    protected function _getStatusCollection()
+    {
+        if($this->_statusCollection === null){
+            $this->_statusCollection = Mage::getModel('sales/order_status')->getCollection();
+        }
+        return $this->_statusCollection;
     }
 }
