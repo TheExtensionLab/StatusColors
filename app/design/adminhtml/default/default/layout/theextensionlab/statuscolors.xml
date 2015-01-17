@@ -7,9 +7,16 @@
         </reference>
     </adminhtml_sales_order_status_edit>
 
-    <adminhtml_sales_order_index>
+    <add_status_color_css_handle>
         <reference name="head">
-            <action method="addJs"><file>theextensionlab/statuscolors/adminhtml/grid-row.js</file></action>
+            <action method="addCss"><file>theextensionlab/statuscolors/grid.css</file></action>
+        </reference>
+    </add_status_color_css_handle>
+
+    <adminhtml_sales_order_index>
+        <update handle="add_status_color_css_handle" />
+        <reference name="head">
+            <action method="addJs" ifconfig="theextensionlab_statuscolors/grid_style/color_whole_row"><file>theextensionlab/statuscolors/adminhtml/grid-row.js</file></action>
             <action method="addCss"><file>theextensionlab/statuscolors/grid.css</file></action>
         </reference>
     </adminhtml_sales_order_index>
@@ -36,5 +43,16 @@
         <!-- apply the layout handle defined above -->
         <update handle="add_order_grid_column_handle" />
     </adminhtml_sales_order_index>
+
+    <adminhtml_sales_order_status_index>
+        <update handle="add_status_color_css_handle" />
+        <reference name="sales_order_status.grid">
+            <action method="addColumnAfter">
+                <columnId>status_color</columnId>
+                <arguments helper="theextensionlab_statuscolors/data/getStatusColorColumn"/>
+                <after>state</after>
+            </action>
+        </reference>
+    </adminhtml_sales_order_status_index>
 
 </layout>

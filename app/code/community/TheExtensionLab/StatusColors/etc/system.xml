@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<config>
+    <tabs>
+        <theextensionlab_tab>
+            <label>TheExtensionLab</label>
+        </theextensionlab_tab>
+    </tabs>
+
+    <sections>
+        <theextensionlab_statuscolors>
+            <label>Status Colors</label>
+            <tab>theextensionlab_tab</tab>
+            <frontend_type>text</frontend_type>
+            <sort_order>10</sort_order>
+            <show_in_default>1</show_in_default>
+            <show_in_website>0</show_in_website>
+            <show_in_store>0</show_in_store>
+            <groups>
+                <grid_style>
+                    <label>Grid Style</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>10</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <color_whole_row>
+                            <label>Color Whole Row</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                            <tooltip><![CDATA[Turning on this option will colour the background of the whole row rather than just the status label.]]></tooltip>
+                        </color_whole_row>
+                    </fields>
+                </grid_style>
+            </groups>
+        </theextensionlab_statuscolors>
+    </sections>
+</config>

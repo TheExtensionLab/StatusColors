@@ -58,6 +58,15 @@
                     </theextensionlab_statuscolors>
                 </observers>
             </adminhtml_block_html_before>
+
+            <controller_action_predispatch_adminhtml_system_config_edit>
+                <observers>
+                    <theextensionlab_statuscolors>
+                        <class>TheExtensionLab_StatusColors_Model_Observer</class>
+                        <method>controllerActionPredispatchAdminhtmlSystemConfigEdit</method>
+                    </theextensionlab_statuscolors>
+                </observers>
+            </controller_action_predispatch_adminhtml_system_config_edit>
         </events>
     </adminhtml>
 </config>
