@@ -1,5 +1,6 @@
 app/code/community/TheExtensionLab/StatusColors/  app/code/community/TheExtensionLab/StatusColors/
 app/design/adminhtml/default/default/layout/theextensionlab/statuscolors.xml    app/design/adminhtml/default/default/layout/theextensionlab/statuscolors.xml
+app/design/adminhtml/default/default/template/theextensionlab/  app/design/adminhtml/default/default/template/theextensionlab/
 app/etc/modules/TheExtensionLab_StatusColors.xml    app/etc/modules/TheExtensionLab_StatusColors.xml
 js/theextensionlab/adminhtml/jscolor/   js/theextensionlab/adminhtml/jscolor/
 js/theextensionlab/statuscolors/    js/theextensionlab/statuscolors/

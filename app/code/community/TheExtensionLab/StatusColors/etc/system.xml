@@ -3,6 +3,7 @@
     <tabs>
         <theextensionlab_tab>
             <label>TheExtensionLab</label>
+            <sort_order>150</sort_order>
         </theextensionlab_tab>
     </tabs>
 
@@ -16,6 +17,14 @@
             <show_in_website>0</show_in_website>
             <show_in_store>0</show_in_store>
             <groups>
+                <extension_information>
+                    <label>Frontend Information</label>
+                    <frontend_model>theextensionlab_statuscolors/adminhtml_system_config_extensionInfo</frontend_model>
+                    <sort_order>1</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                </extension_information>
                 <grid_style>
                     <label>Grid Style</label>
                     <frontend_type>text</frontend_type>
