@@ -9,7 +9,7 @@ Extension Overview
 ------------------
 Modman: Yes
 
-Composer: (Not Yet)
+Composer: Yes
 
 GitHub: Private
 
