@@ -9,30 +9,34 @@
         $block = $observer->getEvent()->getBlock();
 
         if($block instanceof Mage_Adminhtml_Block_Sales_Order_Grid){
+
+            //Get the status column and add a frame_callback which adds the colour to the html
             $column = $block->getColumn('status');
             $column->setFrameCallback(array($this->getHelper(), 'decorateStatus'));
             return $this;
         }
 
+        //Adds a new feild to the new/edit status forms
         if($block instanceof Mage_Adminhtml_Block_Sales_Order_Status_Edit_Form){
             $form = $block->getForm();
             $elements = $form->getElements();
             foreach($elements as $element){
                 switch($element->getId()){
                     case "base_fieldset":
+                            //Add a color field to the fieldset
+                            $element->addField('color', 'text',
+                                array(
+                                    'name'      => 'color',
+                                    'label'     => Mage::helper('sales')->__('Status Color'),
+                                    'class'     => 'color {hash:true,adjust:false}'
+                                )
+                            );
 
-                        $element->addField('color', 'text',
-                            array(
-                                'name'      => 'color',
-                                'label'     => Mage::helper('sales')->__('Status Color'),
-                                'class'     => 'color {hash:true,adjust:false}'
-                            )
-                        );
-
-                        $model = Mage::registry('current_status');
-                        if ($model) {
-                            $form->addValues($model->getData());
-                        }
+                            //Once we have added a new field we need to set the form values again to populate this feild
+                            $model = Mage::registry('current_status');
+                            if ($model) {
+                                $form->addValues($model->getData());
+                            }
                         break;
                 }
             }
@@ -42,6 +46,10 @@
     }
 
     /**
+     * This function adds the span (color) around the status using preg_replace
+     * could have used a template but that would mean if the template was edited
+     * we would need manually update it, using preg_replace there isn't a need for that.
+     *
      * @param Varien_Event_Observer $observer
      * @return $this
      */
@@ -54,7 +62,11 @@
                 $transport = $observer->getEvent()->getTransport();
                 $html = $transport->getHtml();
                 $customColor = Mage::helper('theextensionlab_statuscolors')->getStatusColor($block->getOrder()->getStatus());
-                $html = preg_replace('/id="order_status"/', 'id="order_status" class="custom-color" style="background-color:'.$customColor.';"', $html);
+                $html = preg_replace(
+                    '/id="order_status"/',
+                    'id="order_status" class="custom-color" style="background-color:'.$customColor.';"',
+                    $html
+                );
 
                 $transport->setHtml($html);
                 break;
@@ -64,6 +76,10 @@
     }
 
     /**
+     * This section stops the 404 page when extension is newly installed and the admin session doesn't
+     * have permission to view the system section. (We refresh the ACL before load if the section was
+     * previously now allowed)
+     *
      * @param Varien_Event_Observer $observer
      * @return $this
      */
@@ -85,12 +101,9 @@
         return $this;
     }
 
-    public function getHelper()
-    {
-        return Mage::helper('theextensionlab_statuscolors');
-    }
-
     /**
+     * Checks if the admin user has permissions to view the page
+     *
      * @param $section
      * @return bool
      */
@@ -114,4 +127,13 @@
             return false;
         }
     }
+
+    /**
+     * @return TheExtensionLab_StatusColors_Helper_Data
+     */
+    public function getHelper()
+    {
+        return Mage::helper('theextensionlab_statuscolors');
+    }
+
 }

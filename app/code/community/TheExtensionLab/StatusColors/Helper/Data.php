@@ -4,23 +4,8 @@
 
     /**
      * @return array
-     */
-    public function getStatusColumn()
-    {
-        $column = array(
-            'header' => Mage::helper('sales')->__('Status'),
-            'index' => 'status',
-            'type'  => 'options',
-            'width' => '70px',
-            'options'   => Mage::getSingleton('sales/order_config')->getStatuses(),
-            'frame_callback' => array($this, 'decorateStatus')
-        );
-
-        return $column;
-    }
-
-    /**
-     * @return array
+     *
+     * Note: This is called from layout XML <arguments helper="theextensionlab_statuscolors/data/getStatusColorColumn"/>
      */
     public function getStatusColorColumn()
     {
@@ -52,15 +37,20 @@
      */
     public function decorateStatus($value, $row)
     {
+        //Get the status of this row
         $rowStatus = $row->getStatus();
 
+        //Get full collection of statuses (cached)
         $statusCollection = $this->_getStatusCollection();
+
+        //Run through status collection and when it matches the current row set $customColor
         foreach($statusCollection as $status){
             if($status->getStatus() == $rowStatus){
                 $customColor = $status->getColor();
             }
         }
 
+        //Wrap our status within a span to be styled with css
         $statusHtml = '<span class="custom-color" style="background-color:'.$customColor.';"><span>'.$value.'</span></span>';
 
         return $statusHtml;

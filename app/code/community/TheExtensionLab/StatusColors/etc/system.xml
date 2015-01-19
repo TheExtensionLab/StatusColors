@@ -17,6 +17,7 @@
             <show_in_website>0</show_in_website>
             <show_in_store>0</show_in_store>
             <groups>
+                <!-- Display informatio about the extension e.g version number, github link etc. -->
                 <extension_information>
                     <label>Frontend Information</label>
                     <frontend_model>theextensionlab_statuscolors/adminhtml_system_config_extensionInfo</frontend_model>

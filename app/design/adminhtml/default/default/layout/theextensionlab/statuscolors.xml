@@ -1,25 +1,27 @@
 <?xml version="1.0"?>
 <layout>
 
-    <adminhtml_sales_order_status_edit>
-        <reference name="head">
-            <action method="addJs"><file>theextensionlab/adminhtml/jscolor/jscolor.js</file></action>
-        </reference>
-    </adminhtml_sales_order_status_edit>
-
     <default>
         <reference name="head">
             <action method="addCss"><file>theextensionlab/statuscolors/grid.css</file></action>
         </reference>
     </default>
 
+    <adminhtml_sales_order_status_edit>
+        <reference name="head">
+            <!-- Adds javascript color selector -->
+            <action method="addJs"><file>theextensionlab/adminhtml/jscolor/jscolor.js</file></action>
+        </reference>
+    </adminhtml_sales_order_status_edit>
+
     <adminhtml_sales_order_index>
         <reference name="head">
+            <!-- If set in admin, colour whole grid row. -->
             <action method="addJs" ifconfig="theextensionlab_statuscolors/grid_style/color_whole_row"><file>theextensionlab/statuscolors/adminhtml/grid-row.js</file></action>
-            <action method="addCss"><file>theextensionlab/statuscolors/grid.css</file></action>
         </reference>
     </adminhtml_sales_order_index>
 
+    <!-- Adds a new column to show the status color in the status grid. -->
     <adminhtml_sales_order_status_index>
         <reference name="sales_order_status.grid">
             <action method="addColumnAfter">
@@ -30,6 +32,7 @@
         </reference>
     </adminhtml_sales_order_status_index>
 
+    <!-- Adds colour update when status text is updated -->
     <adminhtml_sales_order_addcomment>
         <block type="adminhtml/sales_order_view_history" name="order_history_js_update" template="theextensionlab/statuscolors/sales/order/view/history/js-update.phtml" output="toHtml"/>
     </adminhtml_sales_order_addcomment>
