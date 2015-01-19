@@ -7,14 +7,13 @@
         </reference>
     </adminhtml_sales_order_status_edit>
 
-    <add_status_color_css_handle>
+    <default>
         <reference name="head">
             <action method="addCss"><file>theextensionlab/statuscolors/grid.css</file></action>
         </reference>
-    </add_status_color_css_handle>
+    </default>
 
     <adminhtml_sales_order_index>
-        <update handle="add_status_color_css_handle" />
         <reference name="head">
             <action method="addJs" ifconfig="theextensionlab_statuscolors/grid_style/color_whole_row"><file>theextensionlab/statuscolors/adminhtml/grid-row.js</file></action>
             <action method="addCss"><file>theextensionlab/statuscolors/grid.css</file></action>
@@ -45,7 +44,6 @@
     </adminhtml_sales_order_index>
 
     <adminhtml_sales_order_status_index>
-        <update handle="add_status_color_css_handle" />
         <reference name="sales_order_status.grid">
             <action method="addColumnAfter">
                 <columnId>status_color</columnId>
@@ -54,10 +52,6 @@
             </action>
         </reference>
     </adminhtml_sales_order_status_index>
-
-    <adminhtml_sales_order_view>
-        <update handle="add_status_color_css_handle" />
-    </adminhtml_sales_order_view>
 
     <adminhtml_sales_order_addcomment>
         <block type="adminhtml/sales_order_view_history" name="order_history_js_update" template="theextensionlab/statuscolors/sales/order/view/history/js-update.phtml" output="toHtml"/>
