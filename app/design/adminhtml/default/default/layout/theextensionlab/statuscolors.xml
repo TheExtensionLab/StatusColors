@@ -59,4 +59,8 @@
         <update handle="add_status_color_css_handle" />
     </adminhtml_sales_order_view>
 
+    <adminhtml_sales_order_addcomment>
+        <block type="adminhtml/sales_order_view_history" name="order_history_js_update" template="theextensionlab/statuscolors/sales/order/view/history/js-update.phtml" output="toHtml"/>
+    </adminhtml_sales_order_addcomment>
+
 </layout>

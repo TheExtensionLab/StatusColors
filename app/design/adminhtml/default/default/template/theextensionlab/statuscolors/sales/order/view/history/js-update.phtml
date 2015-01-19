@@ -1,0 +1,19 @@
+<!--
+
+This page is loaded via AJAX and JS executed when the status is updated, it updates the color to match the status which is updated in another file
+
+-->
+
+<?php $customColor = Mage::helper('theextensionlab_statuscolors')->getStatusColor($this->getOrder()->getStatus());?>
+
+<?php if($customColor == ""){
+        $customColor = "transparent";
+    } ?>
+
+<script type="text/javascript">
+    if($('order_status')){
+        $('order_status').setStyle({
+            backgroundColor: "<?php echo $customColor; ?>"
+        });
+    }
+</script>
