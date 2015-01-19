@@ -78,4 +78,13 @@
             </controller_action_predispatch_adminhtml_system_config_edit>
         </events>
     </adminhtml>
+
+    <phpunit>
+        <suite>
+            <modules>
+                <TheExtensionLab_StatusColors/>
+            </modules>
+        </suite>
+    </phpunit>
+
 </config>
