@@ -8,7 +8,7 @@
     {
         $block = $observer->getEvent()->getBlock();
 
-        if($block instanceof Mage_Adminhtml_Block_Sales_Order_Grid){
+        if ($block instanceof Mage_Adminhtml_Block_Sales_Order_Grid) {
 
             //Get the status column and add a frame_callback which adds the colour to the html
             $column = $block->getColumn('status');
@@ -17,26 +17,27 @@
         }
 
         //Adds a new feild to the new/edit status forms
-        if($block instanceof Mage_Adminhtml_Block_Sales_Order_Status_Edit_Form){
+        if ($block instanceof Mage_Adminhtml_Block_Sales_Order_Status_Edit_Form) {
             $form = $block->getForm();
             $elements = $form->getElements();
-            foreach($elements as $element){
+            foreach ($elements as $element) {
                 switch($element->getId()){
                     case "base_fieldset":
-                            //Add a color field to the fieldset
-                            $element->addField('color', 'text',
-                                array(
-                                    'name'      => 'color',
-                                    'label'     => Mage::helper('sales')->__('Status Color'),
-                                    'class'     => 'color {hash:true,adjust:false}'
-                                )
-                            );
+                        //Add a color field to the fieldset
+                        $element->addField('color', 'text',
+                            array(
+                                'name'      => 'color',
+                                'label'     => Mage::helper('sales')->__('Status Color'),
+                                'class'     => 'color {hash:true,adjust:false}'
+                            )
+                        );
 
-                            //Once we have added a new field we need to set the form values again to populate this feild
-                            $model = Mage::registry('current_status');
-                            if ($model) {
-                                $form->addValues($model->getData());
-                            }
+                        //Once we have added a new field we need to set the form values again to populate this feild
+                        $model = Mage::registry('current_status');
+                        if ($model) {
+                            $form->addValues($model->getData());
+                        }
+
                         break;
                 }
             }
@@ -64,7 +65,7 @@
                 $customColor = Mage::helper('theextensionlab_statuscolors')->getStatusColor($block->getOrder()->getStatus());
                 $html = preg_replace(
                     '/id="order_status"/',
-                    'id="order_status" class="custom-color" style="background-color:'.$customColor.';"',
+                    '${1} class="custom-color" style="background-color:'.$customColor.';"',
                     $html
                 );
 
@@ -89,7 +90,7 @@
 
         switch($section){
             case "theextensionlab_statuscolors":
-                if(!$this->_isSectionAllowed($section)) {
+                if (!$this->_isSectionAllowed($section)) {
                     //Credit to @schmengler for making our idea easy to implement
                     //https://github.com/schmengler/AclReload
                     $session = Mage::getSingleton('admin/session');

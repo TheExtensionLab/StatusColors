@@ -26,7 +26,9 @@
      */
     public function decorateStatusUsingRowData($value)
     {
-        $statusHtml = '<span class="custom-color" style="background-color:'.$value.';"><span>'.$value.'</span></span>';
+        $statusHtml = '<span class="custom-color" style="background-color:'.$value.';">
+                            <span>'.$value.'</span>
+                       </span>';
         return $statusHtml;
     }
 
@@ -44,14 +46,16 @@
         $statusCollection = $this->_getStatusCollection();
 
         //Run through status collection and when it matches the current row set $customColor
-        foreach($statusCollection as $status){
-            if($status->getStatus() == $rowStatus){
+        foreach ($statusCollection as $status) {
+            if ($status->getStatus() == $rowStatus) {
                 $customColor = $status->getColor();
             }
         }
 
         //Wrap our status within a span to be styled with css
-        $statusHtml = '<span class="custom-color" style="background-color:'.$customColor.';"><span>'.$value.'</span></span>';
+        $statusHtml = '<span class="custom-color" style="background-color:'.$customColor.';">
+                            <span>'.$value.'</span>
+                       </span>';
 
         return $statusHtml;
     }
@@ -74,9 +78,11 @@
      */
     protected function _getStatusCollection()
     {
-        if($this->_statusCollection === null){
+        if ($this->_statusCollection === null) {
             $this->_statusCollection = Mage::getModel('sales/order_status')->getCollection();
         }
+
         return $this->_statusCollection;
     }
+
 }

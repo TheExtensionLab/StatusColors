@@ -18,7 +18,8 @@
      * @param Varien_Data_Form_Element_Abstract $element
      * @return string
      */
-    public function render(Varien_Data_Form_Element_Abstract $element){
+    public function render(Varien_Data_Form_Element_Abstract $element)
+    {
         $html = $this->renderView();
         return $html;
     }
