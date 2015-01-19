@@ -9,7 +9,8 @@
         $block = $observer->getEvent()->getBlock();
 
         if($block instanceof Mage_Adminhtml_Block_Sales_Order_Grid){
-            $block->removeColumn('status');
+            $column = $block->getColumn('status');
+            $column->setFrameCallback(array($this->getHelper(), 'decorateStatus'));
             return $this;
         }
 
@@ -19,7 +20,6 @@
             foreach($elements as $element){
                 switch($element->getId()){
                     case "base_fieldset":
-
 
                         $element->addField('color', 'text',
                             array(
@@ -85,6 +85,10 @@
         return $this;
     }
 
+    public function getHelper()
+    {
+        return Mage::helper('theextensionlab_statuscolors');
+    }
 
     /**
      * @param $section
