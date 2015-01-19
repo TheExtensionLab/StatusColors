@@ -1,0 +1,18 @@
+{
+    "name":"theextensionlab/statuscolors",
+    "type":"magento-module",
+    "homepage":"http://www.theextensionlab.com/magento/status-colors",
+    "description":"Magento extension to add colours to Magento Order Statuses",
+    "authors":[
+        {
+            "name":"James Anelay",
+            "email":"james@theextensionlab.com"
+        }
+    ],
+    "require":{
+        "magento-hackathon/magento-composer-installer":"*"
+    },
+    "require-dev":{
+        "ecomdev/ecomdev_phpunit":"*"
+    }
+}
