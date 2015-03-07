@@ -1,4 +1,16 @@
-<?php class TheExtensionLab_StatusColors_Model_Observer
+<?php 
+
+/**
+ * StatusColors Observer Model
+ *
+ * @category    TheExtensionLab
+ * @package     TheExtensionLab_
+ * @copyright   Copyright (c) TheExtensionLab (http://www.theextensionlab.com)
+ * @license     Open Software License (OSL 3.0)
+ * @author      James Anelay @ TheExtensionLab <james@theextensionlab.com>
+ */
+
+class TheExtensionLab_StatusColors_Model_Observer
 {
     /**
      * @param Varien_Event_Observer $observer

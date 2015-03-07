@@ -1,4 +1,16 @@
-<?php class TheExtensionLab_StatusColors_Block_Adminhtml_System_Config_ExtensionInfo
+<?php
+
+/**
+ * Extension Information System Config Block
+ *
+ * @category    TheExtensionLab
+ * @package     TheExtensionLab_StatusColors
+ * @copyright   Copyright (c) TheExtensionLab (http://www.theextensionlab.com)
+ * @license     Open Software License (OSL 3.0)
+ * @author      James Anelay @ TheExtensionLab <james@theextensionlab.com>
+ */
+
+class TheExtensionLab_StatusColors_Block_Adminhtml_System_Config_ExtensionInfo
     extends Mage_Adminhtml_Block_Abstract
     implements Varien_Data_Form_Element_Renderer_Interface
 {
