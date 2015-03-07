@@ -14,6 +14,12 @@
         </reference>
     </adminhtml_sales_order_status_edit>
 
+    <adminhtml_system_config_edit>
+        <reference name="head">
+            <action method="addCss"><file>theextensionlab/statuscolors/system-config.css</file></action>
+        </reference>
+    </adminhtml_system_config_edit>
+
     <adminhtml_sales_order_index>
         <reference name="head">
             <!-- If set in admin, colour whole grid row. -->

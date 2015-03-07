@@ -1,0 +1,44 @@
+.extension-info-box{
+    border:1px solid #d6d6d6;
+    background:#fafafa;
+    padding:20px 15px;
+    margin-bottom:10px;
+    clear:both;
+    overflow:hidden;
+    box-sizing:border-box;
+}
+
+.extension-info-box .version-info{
+    font-size:0.8em;
+    font-weight:normal;
+}
+
+.extension-info-img{
+    width:30%;
+    float:left;
+}
+
+.extension-info-img img{
+    max-width:100%;
+}
+
+.extension-info-box .extension-info-header{
+    border-bottom:0px;
+    border-left: 1px solid #d6d6d6;
+}
+
+.extension-info-box .info{
+    float:left;
+    padding-left:10px;
+    min-height:150px;
+    width:70%;
+    box-sizing:border-box;
+}
+
+.info h3{
+    display:inline;
+}
+
+.info h3 span{
+    color:#000;font-size:14px;font-weight:normal
+}
