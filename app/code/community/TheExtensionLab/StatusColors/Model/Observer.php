@@ -89,59 +89,6 @@ class TheExtensionLab_StatusColors_Model_Observer
     }
 
     /**
-     * This section stops the 404 page when extension is newly installed and the admin session doesn't
-     * have permission to view the system section. (We refresh the ACL before load if the section was
-     * previously now allowed)
-     *
-     * @param Varien_Event_Observer $observer
-     * @return $this
-     */
-    public function controllerActionPredispatchAdminhtmlSystemConfigEdit(Varien_Event_Observer $observer)
-    {
-        $section = $observer->getEvent()->getControllerAction()->getRequest()->getParam('section');
-
-        switch($section){
-            case "theextensionlab_statuscolors":
-                if (!$this->_isSectionAllowed($section)) {
-                    //Credit to @schmengler for making our idea easy to implement
-                    //https://github.com/schmengler/AclReload
-                    $session = Mage::getSingleton('admin/session');
-                    $session->setAcl(Mage::getResourceModel('admin/acl')->loadAcl());
-                }
-                break;
-        }
-
-        return $this;
-    }
-
-    /**
-     * Checks if the admin user has permissions to view the page
-     *
-     * @param $section
-     * @return bool
-     */
-    protected function _isSectionAllowed($section)
-    {
-        try {
-            $session = Mage::getSingleton('admin/session');
-            $resourceLookup = "admin/system/config/{$section}";
-            if ($session->getData('acl') instanceof Mage_Admin_Model_Acl) {
-                $resourceId = $session->getData('acl')->get($resourceLookup)->getResourceId();
-                if (!$session->isAllowed($resourceId)) {
-                    throw new Exception('');
-                }
-                return true;
-            }
-        }
-        catch (Zend_Acl_Exception $e) {
-            return false;
-        }
-        catch (Exception $e) {
-            return false;
-        }
-    }
-
-    /**
      * @return TheExtensionLab_StatusColors_Helper_Data
      */
     public function getHelper()

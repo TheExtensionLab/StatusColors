@@ -23,7 +23,7 @@
     <adminhtml_sales_order_index>
         <reference name="head">
             <!-- If set in admin, colour whole grid row. -->
-            <action method="addJs" ifconfig="theextensionlab_statuscolors/grid_style/color_whole_row"><file>theextensionlab/statuscolors/adminhtml/grid-row.js</file></action>
+            <action method="addJs" ifconfig="admin/order_grid/color_whole_row"><file>theextensionlab/statuscolors/adminhtml/grid-row.js</file></action>
         </reference>
     </adminhtml_sales_order_index>
 

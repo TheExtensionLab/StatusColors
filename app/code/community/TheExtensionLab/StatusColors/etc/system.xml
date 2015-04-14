@@ -8,36 +8,13 @@
  *
 -->
 <config>
-    <tabs>
-        <theextensionlab_tab>
-            <label>TheExtensionLab</label>
-            <sort_order>150</sort_order>
-        </theextensionlab_tab>
-    </tabs>
-
     <sections>
-        <theextensionlab_statuscolors>
-            <label>Status Colors</label>
-            <tab>theextensionlab_tab</tab>
-            <frontend_type>text</frontend_type>
-            <sort_order>10</sort_order>
-            <show_in_default>1</show_in_default>
-            <show_in_website>0</show_in_website>
-            <show_in_store>0</show_in_store>
+        <admin>
             <groups>
-                <!-- Display informatio about the extension e.g version number, github link etc. -->
-                <extension_information>
-                    <label>Frontend Information</label>
-                    <frontend_model>theextensionlab_statuscolors/adminhtml_system_config_extensionInfo</frontend_model>
-                    <sort_order>1</sort_order>
-                    <show_in_default>1</show_in_default>
-                    <show_in_website>1</show_in_website>
-                    <show_in_store>1</show_in_store>
-                </extension_information>
-                <grid_style>
-                    <label>Grid Style</label>
+                <order_grid>
+                    <label>Order Grid</label>
                     <frontend_type>text</frontend_type>
-                    <sort_order>10</sort_order>
+                    <sort_order>100</sort_order>
                     <show_in_default>1</show_in_default>
                     <show_in_website>1</show_in_website>
                     <show_in_store>1</show_in_store>
@@ -53,8 +30,8 @@
                             <tooltip><![CDATA[Turning on this option will colour the background of the whole row rather than just the status label.]]></tooltip>
                         </color_whole_row>
                     </fields>
-                </grid_style>
+                </order_grid>
             </groups>
-        </theextensionlab_statuscolors>
+        </admin>
     </sections>
 </config>

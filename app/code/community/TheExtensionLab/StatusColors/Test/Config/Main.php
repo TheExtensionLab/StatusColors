@@ -15,7 +15,6 @@ class TheExtensionLab_StatusColors_Test_Config_Main extends EcomDev_PHPUnit_Test
         $this->assertModelAlias('theextensionlab_statuscolors/observer','TheExtensionLab_StatusColors_Model_Observer');
         $this->assertResourceModelAlias('theextensionlab_statuscolors/setup','TheExtensionLab_StatusColors_Model_Resource_Setup');
         $this->assertHelperAlias('theextensionlab_statuscolors','TheExtensionLab_StatusColors_Helper_Data');
-        $this->assertBlockAlias('theextensionlab_statuscolors/example','TheExtensionLab_StatusColors_Block_Example');
     }
 
     public function testLayoutFiles()
