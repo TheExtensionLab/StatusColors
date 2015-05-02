@@ -20,6 +20,9 @@ class TheExtensionLab_StatusColors_Model_Observer
     {
         $block = $observer->getEvent()->getBlock();
 
+        $setup = new TheExtensionLab_StatusColors_Model_Resource_Setup;
+        $setup->addInstallationSuccessfulNotification();
+
         if ($block instanceof Mage_Adminhtml_Block_Sales_Order_Grid) {
 
             //Get the status column and add a frame_callback which adds the colour to the html
@@ -29,7 +32,7 @@ class TheExtensionLab_StatusColors_Model_Observer
         }
 
         //Adds a new feild to the new/edit status forms
-        if ($block instanceof Mage_Adminhtml_Block_Sales_Order_Status_Edit_Form) {
+        if ($block instanceof Mage_Adminhtml_Block_Sales_Order_Status_Edit_Form || $block instanceof Mage_Adminhtml_Block_Sales_Order_Status_New_Form) {
             $form = $block->getForm();
             $elements = $form->getElements();
             foreach ($elements as $element) {
@@ -77,7 +80,7 @@ class TheExtensionLab_StatusColors_Model_Observer
                 $customColor = Mage::helper('theextensionlab_statuscolors')->getStatusColor($block->getOrder()->getStatus());
                 $html = preg_replace(
                     '/id="order_status"/',
-                    '${1} class="custom-color" style="background-color:'.$customColor.';"',
+                    '$0  class="custom-color" style="background-color:'.$customColor.';"',
                     $html
                 );
 

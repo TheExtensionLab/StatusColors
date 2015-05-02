@@ -10,7 +10,7 @@
 <config>
     <modules>
         <TheExtensionLab_StatusColors>
-            <version>1.1.0</version>
+            <version>1.2.0</version>
         </TheExtensionLab_StatusColors>
     </modules>
 
@@ -72,6 +72,14 @@
             </core_block_abstract_to_html_after>
         </events>
     </adminhtml>
+
+    <default>
+        <admin>
+            <order_grid>
+                <default_status_color>#EAEAEA</default_status_color>
+            </order_grid>
+        </admin>
+    </default>
 
     <phpunit>
         <suite>
