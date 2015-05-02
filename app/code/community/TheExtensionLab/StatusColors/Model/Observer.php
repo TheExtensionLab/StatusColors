@@ -20,6 +20,9 @@ class TheExtensionLab_StatusColors_Model_Observer
     {
         $block = $observer->getEvent()->getBlock();
 
+        $setup = new TheExtensionLab_StatusColors_Model_Resource_Setup;
+        $setup->addInstallationSuccessfulNotification();
+
         if ($block instanceof Mage_Adminhtml_Block_Sales_Order_Grid) {
 
             //Get the status column and add a frame_callback which adds the colour to the html

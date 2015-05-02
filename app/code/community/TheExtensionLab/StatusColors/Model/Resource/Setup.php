@@ -5,7 +5,7 @@
         Mage::getModel('adminnotification/inbox')->addNotice(
             '<strong>You have successfully installed TheExtensionLab_StatusColors:</strong>
             Status colors can be configured in System > Order Statuses and
-            other configuration options found at System > Configuration > Advanced > Admin > Order Grid</a>',
+            other config options found at System > Configuration > Advanced > Admin > Order Grid</a>',
             'For full up to date documenation see <a href="'.$docUrl.'" target="_blank">'.$docUrl.'</a>',
             'http://docs.theextensionlab.com/status-colors/configuration.html',
             true
