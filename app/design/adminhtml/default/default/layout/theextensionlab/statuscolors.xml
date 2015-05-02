@@ -18,6 +18,10 @@
         <update handle="add_jscolor_js"/>
     </adminhtml_sales_order_status_edit>
 
+    <adminhtml_sales_order_status_new>
+        <update handle="add_jscolor_js"/>
+    </adminhtml_sales_order_status_new>
+
     <adminhtml_system_config_edit>
         <update handle="add_jscolor_js"/>
     </adminhtml_system_config_edit>

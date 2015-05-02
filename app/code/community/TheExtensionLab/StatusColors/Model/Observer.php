@@ -29,7 +29,7 @@ class TheExtensionLab_StatusColors_Model_Observer
         }
 
         //Adds a new feild to the new/edit status forms
-        if ($block instanceof Mage_Adminhtml_Block_Sales_Order_Status_Edit_Form) {
+        if ($block instanceof Mage_Adminhtml_Block_Sales_Order_Status_Edit_Form || $block instanceof Mage_Adminhtml_Block_Sales_Order_Status_New_Form) {
             $form = $block->getForm();
             $elements = $form->getElements();
             foreach ($elements as $element) {
