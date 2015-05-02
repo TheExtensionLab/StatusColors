@@ -73,6 +73,14 @@
         </events>
     </adminhtml>
 
+    <default>
+        <admin>
+            <order_grid>
+                <default_status_color>#EAEAEA</default_status_color>
+            </order_grid>
+        </admin>
+    </default>
+
     <phpunit>
         <suite>
             <modules>

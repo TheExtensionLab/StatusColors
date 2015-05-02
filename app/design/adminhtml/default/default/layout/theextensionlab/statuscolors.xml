@@ -7,12 +7,20 @@
         </reference>
     </default>
 
-    <adminhtml_sales_order_status_edit>
+    <add_jscolor_js>
         <reference name="head">
             <!-- Adds javascript color selector -->
             <action method="addJs"><file>theextensionlab/adminhtml/jscolor/jscolor.js</file></action>
         </reference>
+    </add_jscolor_js>
+
+    <adminhtml_sales_order_status_edit>
+        <update handle="add_jscolor_js"/>
     </adminhtml_sales_order_status_edit>
+
+    <adminhtml_system_config_edit>
+        <update handle="add_jscolor_js"/>
+    </adminhtml_system_config_edit>
 
     <adminhtml_system_config_edit>
         <reference name="head">

@@ -58,7 +58,7 @@ class TheExtensionLab_StatusColors_Helper_Data extends Mage_Core_Helper_Abstract
         //Run through status collection and when it matches the current row set $customColor
         foreach ($statusCollection as $status) {
             if ($status->getStatus() == $rowStatus) {
-                $customColor = $status->getColor();
+                $customColor = $this->getColorOrDefault($status->getColor());
             }
         }
 
@@ -80,7 +80,15 @@ class TheExtensionLab_StatusColors_Helper_Data extends Mage_Core_Helper_Abstract
     {
         $status = Mage::getModel('sales/order_status')
             ->load($code);
-        return $status->getColor();
+        return $this->getColorOrDefault($status->getColor());
+    }
+
+    protected function getColorOrDefault($color)
+    {
+        if(empty($color)){
+            return Mage::getStoreConfig('admin/order_grid/default_status_color');
+        }
+        return $color;
     }
 
     /**
