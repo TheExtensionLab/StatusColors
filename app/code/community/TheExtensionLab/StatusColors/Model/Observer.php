@@ -77,7 +77,7 @@ class TheExtensionLab_StatusColors_Model_Observer
                 $customColor = Mage::helper('theextensionlab_statuscolors')->getStatusColor($block->getOrder()->getStatus());
                 $html = preg_replace(
                     '/id="order_status"/',
-                    '${1} class="custom-color" style="background-color:'.$customColor.';"',
+                    '$0  class="custom-color" style="background-color:'.$customColor.';"',
                     $html
                 );
 

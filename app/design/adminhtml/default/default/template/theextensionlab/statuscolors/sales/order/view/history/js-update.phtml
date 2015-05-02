@@ -4,11 +4,12 @@ This page is loaded via AJAX and JS executed when the status is updated, it upda
 
 -->
 
-<?php $customColor = Mage::helper('theextensionlab_statuscolors')->getStatusColor($this->getOrder()->getStatus());?>
-
-<?php if($customColor == ""){
-        $customColor = "transparent";
-    } ?>
+<?php $customColor = Mage::helper('theextensionlab_statuscolors')->getColorOrDefault(
+            Mage::helper('theextensionlab_statuscolors')->getStatusColor(
+                $this->getOrder()->getStatus()
+            )
+        );
+?>
 
 <script type="text/javascript">
     if($('order_status')){

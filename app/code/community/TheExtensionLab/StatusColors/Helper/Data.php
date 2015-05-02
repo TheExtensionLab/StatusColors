@@ -83,7 +83,7 @@ class TheExtensionLab_StatusColors_Helper_Data extends Mage_Core_Helper_Abstract
         return $this->getColorOrDefault($status->getColor());
     }
 
-    protected function getColorOrDefault($color)
+    public function getColorOrDefault($color)
     {
         if(empty($color)){
             return Mage::getStoreConfig('admin/order_grid/default_status_color');
