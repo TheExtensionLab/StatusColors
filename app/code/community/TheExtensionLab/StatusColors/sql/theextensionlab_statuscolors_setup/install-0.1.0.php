@@ -16,3 +16,5 @@ $installer->getConnection()
     );
 
 $installer->endSetup();
+
+$installer->addInstallationSuccessfulNotification();
