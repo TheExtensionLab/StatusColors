@@ -7,7 +7,6 @@ class TheExtensionLab_StatusColors_Test_Config_Main extends EcomDev_PHPUnit_Test
     {
         $this->assertSetupResourceDefined();
         $this->assertSetupResourceExists();
-        $this->assertSetupScriptVersions();
     }
 
     public function testClassAliases()
@@ -37,13 +36,6 @@ class TheExtensionLab_StatusColors_Test_Config_Main extends EcomDev_PHPUnit_Test
             'core_block_abstract_to_html_after',
             'TheExtensionLab_StatusColors_Model_Observer',
             'coreBlockAbstractToHtmlAfter'
-        );
-
-        $this->assertEventObserverDefined(
-            'adminhtml',
-            'controller_action_predispatch_adminhtml_system_config_edit',
-            'TheExtensionLab_StatusColors_Model_Observer',
-            'controllerActionPredispatchAdminhtmlSystemConfigEdit'
         );
     }
 
