@@ -12,7 +12,13 @@
     "require":{
         "magento-hackathon/magento-composer-installer":"*"
     },
-    "require-dev":{
-        "ecomdev/ecomdev_phpunit":"*"
-    }
+    "require-dev": {
+        "ecomdev/ecomdev_phpunit": "~0.3.7"
+    },
+    "repositories": [
+        {
+            "type": "composer",
+            "url": "http://packages.firegento.com"
+        }
+    ]
 }
