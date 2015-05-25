@@ -1,6 +1,7 @@
 # StatusColors
 
 [![Build Status](https://travis-ci.org/TheExtensionLab/StatusColors.svg?branch=master)](https://travis-ci.org/TheExtensionLab/StatusColors)
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/TheExtensionLab/StatusColors/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/TheExtensionLab/StatusColors/?branch=master)
 [![Join the chat at https://gitter.im/TheExtensionLab/StatusColors](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/TheExtensionLab/StatusColors?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
 Adds colours to Magento Order Statuses, so that merchants can see at a glace what status an order is on. (Avaliable for Magento versions 1.6 upwards)
