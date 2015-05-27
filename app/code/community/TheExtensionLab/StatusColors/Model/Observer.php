@@ -22,7 +22,7 @@ class TheExtensionLab_StatusColors_Model_Observer
     {
         $block = $observer->getEvent()->getBlock();
 
-        $this->_catchRewrittenOrderGridThatDoesntExtentOriginalClass();
+        $this->_catchRewrittenOrderGridThatDoesntExtendOriginalClass();
 
         if ($block instanceof $this->_currentOrderGridBlockClass) {
 
@@ -62,7 +62,7 @@ class TheExtensionLab_StatusColors_Model_Observer
         return $this;
     }
 
-    protected function _catchRewrittenOrderGridThatDoesntExtentOriginalClass(){
+    protected function _catchRewrittenOrderGridThatDoesntExtendOriginalClass(){
         $rewriteNode = (string) Mage::getConfig()->getNode('global/blocks/adminhtml/rewrite/sales_order_grid');
 
         if($rewriteNode){
