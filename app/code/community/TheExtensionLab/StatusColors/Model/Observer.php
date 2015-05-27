@@ -12,6 +12,8 @@
 
 class TheExtensionLab_StatusColors_Model_Observer
 {
+    protected $_currentOrderGridBlockClass = 'Mage_Adminhtml_Block_Sales_Order_Grid';
+
     /**
      * @param Varien_Event_Observer $observer
      * @return $this
@@ -20,7 +22,9 @@ class TheExtensionLab_StatusColors_Model_Observer
     {
         $block = $observer->getEvent()->getBlock();
 
-        if ($block instanceof Mage_Adminhtml_Block_Sales_Order_Grid) {
+        $this->_catchRewrittenOrderGridThatDoesntExtentOriginalClass();
+
+        if ($block instanceof $this->_currentOrderGridBlockClass) {
 
             //Get the status column and add a frame_callback which adds the colour to the html
             $column = $block->getColumn('status');
@@ -58,14 +62,16 @@ class TheExtensionLab_StatusColors_Model_Observer
         return $this;
     }
 
-    /**
-     * This function adds the span (color) around the status using preg_replace
-     * could have used a template but that would mean if the template was edited
-     * we would need manually update it, using preg_replace there isn't a need for that.
-     *
-     * @param Varien_Event_Observer $observer
-     * @return $this
-     */
+    protected function _catchRewrittenOrderGridThatDoesntExtentOriginalClass(){
+        $rewriteNode = (string) Mage::getConfig()->getNode('global/blocks/adminhtml/rewrite/sales_order_grid');
+
+        if($rewriteNode){
+            $this->_currentOrderGridBlockClass = $rewriteNode;
+        }
+
+        return $this->_currentOrderGridBlockClass;
+    }
+
     public function coreBlockAbstractToHtmlAfter(Varien_Event_Observer $observer)
     {
         $block = $observer->getEvent()->getBlock();
@@ -88,9 +94,6 @@ class TheExtensionLab_StatusColors_Model_Observer
         return $this;
     }
 
-    /**
-     * @return TheExtensionLab_StatusColors_Helper_Data
-     */
     public function getHelper()
     {
         return Mage::helper('theextensionlab_statuscolors');
