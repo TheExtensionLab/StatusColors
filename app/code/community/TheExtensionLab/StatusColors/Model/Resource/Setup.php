@@ -2,7 +2,14 @@
 {
     public function addInstallationSuccessfulNotification(){
         $docUrl = "http://docs.theextensionlab.com/status-colors/installation.html";
-        Mage::getModel('adminnotification/inbox')->addNotice(
+
+        $inboxModel = Mage::getModel('adminnotification/inbox');
+
+        if(!method_exists($inboxModel,'addNotice')){
+            return;
+        }
+
+        $inboxModel->addNotice(
             'You have successfully installed TheExtensionLab_StatusColors:
             Status colors can be configured in System > Order Statuses and
             other config options found at System > Configuration > Advanced > Admin > Order Grid',
