@@ -1,4 +1,5 @@
 <?php
+
 /**
  * StatusColors Data Helper
  *
@@ -15,10 +16,10 @@ class TheExtensionLab_StatusColors_Helper_Data extends Mage_Core_Helper_Abstract
     public function getStatusColorColumn()
     {
         $column = array(
-            'header' => Mage::helper('sales')->__('Status Color'),
-            'type'  => 'text',
-            'index' => 'color',
-            'width'     => '200px',
+            'header'         => Mage::helper('sales')->__('Status Color'),
+            'type'           => 'text',
+            'index'          => 'color',
+            'width'          => '200px',
             'frame_callback' => array($this, 'decorateStatusUsingRowData')
         );
 
@@ -27,8 +28,8 @@ class TheExtensionLab_StatusColors_Helper_Data extends Mage_Core_Helper_Abstract
 
     public function decorateStatusUsingRowData($value)
     {
-        $statusHtml = '<span class="custom-color" style="background-color:'.$value.';">
-                            <span>'.$value.'</span>
+        $statusHtml = '<span class="custom-color" style="background-color:' . $value . ';">
+                            <span>' . $value . '</span>
                        </span>';
         return $statusHtml;
     }
@@ -45,18 +46,19 @@ class TheExtensionLab_StatusColors_Helper_Data extends Mage_Core_Helper_Abstract
             }
         }
 
-        $statusHtml = $this->_wrapInBackgroundColorSpan($value,$customColor);
+        $statusHtml = $this->_wrapInBackgroundColorSpan($value, $customColor);
 
         return $statusHtml;
     }
 
-    private function _wrapInBackgroundColorSpan($value,$backgroundColor){
-        if(!$backgroundColor){
+    private function _wrapInBackgroundColorSpan($value, $backgroundColor)
+    {
+        if (!$backgroundColor) {
             return $value;
         }
 
-        $html = '<span class="custom-color" style="background-color:'.$backgroundColor.';">
-                            <span>'.$value.'</span>
+        $html = '<span class="custom-color" style="background-color:' . $backgroundColor . ';">
+                            <span>' . $value . '</span>
                        </span>';
         return $html;
     }
@@ -70,7 +72,7 @@ class TheExtensionLab_StatusColors_Helper_Data extends Mage_Core_Helper_Abstract
 
     public function getColorOrDefault($color)
     {
-        if(empty($color)){
+        if (empty($color)) {
             return Mage::getStoreConfig('admin/order_grid/default_status_color');
         }
         return $color;
