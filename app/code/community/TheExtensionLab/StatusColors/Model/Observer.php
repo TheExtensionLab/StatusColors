@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 /**
  * StatusColors Observer Model
@@ -9,52 +9,28 @@
  * @license     Open Software License (OSL 3.0)
  * @author      James Anelay @ TheExtensionLab <james@theextensionlab.com>
  */
-
 class TheExtensionLab_StatusColors_Model_Observer
 {
     protected $_currentOrderGridBlockClass = 'Mage_Adminhtml_Block_Sales_Order_Grid';
 
-    /**
-     * @param Varien_Event_Observer $observer
-     * @return $this
-     */
     public function adminhtmlBlockHtmlBefore(Varien_Event_Observer $observer)
     {
         $block = $observer->getEvent()->getBlock();
 
         $this->_catchRewrittenOrderGridThatDoesntExtendOriginalClass();
 
-        if ($block instanceof $this->_currentOrderGridBlockClass) {
-
-            //Get the status column and add a frame_callback which adds the colour to the html
-            $column = $block->getColumn('status');
-            $column->setFrameCallback(array($this->getHelper(), 'decorateStatus'));
+        if ($this->_isBlockOrderGrid($block)) {
+            $this->_addDecorateStatusFrameCallback($block->getColumn('status'));
             return $this;
         }
 
-        //Adds a new feild to the new/edit status forms
-        if ($block instanceof Mage_Adminhtml_Block_Sales_Order_Status_Edit_Form || $block instanceof Mage_Adminhtml_Block_Sales_Order_Status_New_Form) {
+        if ($this->_isStatusFormBlock($block)) {
             $form = $block->getForm();
             $elements = $form->getElements();
             foreach ($elements as $element) {
-                switch($element->getId()){
-                    case "base_fieldset":
-                        //Add a color field to the fieldset
-                        $element->addField('color', 'text',
-                            array(
-                                'name'      => 'color',
-                                'label'     => Mage::helper('sales')->__('Status Color'),
-                                'class'     => 'color {hash:true,adjust:false}'
-                            )
-                        );
-
-                        //Once we have added a new field we need to set the form values again to populate this feild
-                        $model = Mage::registry('current_status');
-                        if ($model) {
-                            $form->addValues($model->getData());
-                        }
-
-                        break;
+                if ($this->_isBasedFieldset($element)) {
+                    $this->_addColorInputFeild($element);
+                    $this->_populateFormWithNewFeild($form);
                 }
             }
         }
@@ -62,10 +38,47 @@ class TheExtensionLab_StatusColors_Model_Observer
         return $this;
     }
 
-    protected function _catchRewrittenOrderGridThatDoesntExtendOriginalClass(){
-        $rewriteNode = (string) Mage::getConfig()->getNode('global/blocks/adminhtml/rewrite/sales_order_grid');
+    private function _addDecorateStatusFrameCallback($column)
+    {
+        $column->setFrameCallback(array($this->getHelper(), 'decorateStatus'));
+    }
 
-        if($rewriteNode){
+    private function _isBlockOrderGrid(Mage_Core_Block_Abstract $block)
+    {
+        return $block instanceof $this->_currentOrderGridBlockClass;
+    }
+
+    private function _isStatusFormBlock(Mage_Core_Block_Abstract $block)
+    {
+        return $block instanceof Mage_Adminhtml_Block_Sales_Order_Status_Edit_Form
+        || $block instanceof Mage_Adminhtml_Block_Sales_Order_Status_New_Form;
+    }
+
+    private function _addColorInputFeild($fieldset)
+    {
+        $fieldset->addField(
+            'color', 'text',
+            array(
+                'name' => 'color',
+                'label' => Mage::helper('sales')->__('Status Color'),
+                'class' => 'color {hash:true,adjust:false}'
+            )
+        );
+    }
+
+    private function _populateFormWithNewFeild($form)
+    {
+        $model = Mage::registry('current_status');
+        if ($model) {
+            $form->addValues($model->getData());
+        }
+    }
+
+    protected function _catchRewrittenOrderGridThatDoesntExtendOriginalClass()
+    {
+        $rewriteNode = (string)Mage::getConfig()->getNode('global/blocks/adminhtml/rewrite/sales_order_grid');
+
+        if ($rewriteNode) {
             $this->_currentOrderGridBlockClass = $rewriteNode;
         }
 
@@ -76,14 +89,16 @@ class TheExtensionLab_StatusColors_Model_Observer
     {
         $block = $observer->getEvent()->getBlock();
 
-        switch($block->getNameInLayout()) {
+        switch ($block->getNameInLayout()) {
             case "order_info":
                 $transport = $observer->getEvent()->getTransport();
                 $html = $transport->getHtml();
-                $customColor = Mage::helper('theextensionlab_statuscolors')->getStatusColor($block->getOrder()->getStatus());
+                $customColor = Mage::helper('theextensionlab_statuscolors')->getStatusColor(
+                    $block->getOrder()->getStatus()
+                );
                 $html = preg_replace(
                     '/id="order_status"/',
-                    '$0  class="custom-color" style="background-color:'.$customColor.';"',
+                    '$0  class="custom-color" style="background-color:' . $customColor . ';"',
                     $html
                 );
 
