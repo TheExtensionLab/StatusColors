@@ -12,11 +12,6 @@ class TheExtensionLab_StatusColors_Helper_Data extends Mage_Core_Helper_Abstract
 {
     protected $_statusCollection = null;
 
-    /**
-     * @return array
-     *
-     * Note: This is called from layout XML <arguments helper="theextensionlab_statuscolors/data/getStatusColorColumn"/>
-     */
     public function getStatusColorColumn()
     {
         $column = array(
@@ -30,10 +25,6 @@ class TheExtensionLab_StatusColors_Helper_Data extends Mage_Core_Helper_Abstract
         return $column;
     }
 
-    /**
-     * Decorate status column values - but don't load collection as we don't need to.
-     * @return string
-     */
     public function decorateStatusUsingRowData($value)
     {
         $statusHtml = '<span class="custom-color" style="background-color:'.$value.';">
@@ -42,40 +33,34 @@ class TheExtensionLab_StatusColors_Helper_Data extends Mage_Core_Helper_Abstract
         return $statusHtml;
     }
 
-    /**
-     * Decorate status column values
-     *
-     * @return string
-     */
     public function decorateStatus($value, $row)
     {
-        //Get the status of this row
         $rowStatus = $row->getStatus();
-
-        //Get full collection of statuses (cached)
         $statusCollection = $this->_getStatusCollection();
+        $customColor = null;
 
-        //Run through status collection and when it matches the current row set $customColor
         foreach ($statusCollection as $status) {
             if ($status->getStatus() == $rowStatus) {
                 $customColor = $this->getColorOrDefault($status->getColor());
             }
         }
 
-        //Wrap our status within a span to be styled with css
-        $statusHtml = '<span class="custom-color" style="background-color:'.$customColor.';">
-                            <span>'.$value.'</span>
-                       </span>';
+        $statusHtml = $this->_wrapInBackgroundColorSpan($value,$customColor);
 
         return $statusHtml;
     }
 
-    /**
-     * Retrieve status color
-     *
-     * @param   string $code
-     * @return  string
-     */
+    private function _wrapInBackgroundColorSpan($value,$backgroundColor){
+        if(!$backgroundColor){
+            return $value;
+        }
+
+        $html = '<span class="custom-color" style="background-color:'.$backgroundColor.';">
+                            <span>'.$value.'</span>
+                       </span>';
+        return $html;
+    }
+
     public function getStatusColor($code)
     {
         $status = Mage::getModel('sales/order_status')
@@ -91,9 +76,6 @@ class TheExtensionLab_StatusColors_Helper_Data extends Mage_Core_Helper_Abstract
         return $color;
     }
 
-    /**
-     * @return Mage_Sales_Model_Resource_Order_Status_Collection|null
-     */
     protected function _getStatusCollection()
     {
         if ($this->_statusCollection === null) {
