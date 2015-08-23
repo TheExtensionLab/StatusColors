@@ -28,7 +28,7 @@ class TheExtensionLab_StatusColors_Model_Observer
             $form = $block->getForm();
             $elements = $form->getElements();
             foreach ($elements as $element) {
-                if ($this->_isBasedFieldset($element)) {
+                if ($this->_isBaseFieldset($element)) {
                     $this->_addColorInputFeild($element);
                     $this->_populateFormWithNewFeild($form);
                 }
@@ -38,9 +38,15 @@ class TheExtensionLab_StatusColors_Model_Observer
         return $this;
     }
 
-    private function _addDecorateStatusFrameCallback($column)
+    private function _catchRewrittenOrderGridThatDoesntExtendOriginalClass()
     {
-        $column->setFrameCallback(array($this->getHelper(), 'decorateStatus'));
+        $rewriteNode = (string)Mage::getConfig()->getNode('global/blocks/adminhtml/rewrite/sales_order_grid');
+
+        if ($rewriteNode) {
+            $this->_currentOrderGridBlockClass = $rewriteNode;
+        }
+
+        return $this->_currentOrderGridBlockClass;
     }
 
     private function _isBlockOrderGrid(Mage_Core_Block_Abstract $block)
@@ -48,10 +54,20 @@ class TheExtensionLab_StatusColors_Model_Observer
         return $block instanceof $this->_currentOrderGridBlockClass;
     }
 
+    private function _addDecorateStatusFrameCallback($column)
+    {
+        $column->setFrameCallback(array($this->getHelper(), 'decorateStatus'));
+    }
+
+
     private function _isStatusFormBlock(Mage_Core_Block_Abstract $block)
     {
         return $block instanceof Mage_Adminhtml_Block_Sales_Order_Status_Edit_Form
         || $block instanceof Mage_Adminhtml_Block_Sales_Order_Status_New_Form;
+    }
+
+    private function _isBaseFieldset($element){
+        return $element->getId() == "base_fieldset";
     }
 
     private function _addColorInputFeild($fieldset)
@@ -74,42 +90,38 @@ class TheExtensionLab_StatusColors_Model_Observer
         }
     }
 
-    protected function _catchRewrittenOrderGridThatDoesntExtendOriginalClass()
-    {
-        $rewriteNode = (string)Mage::getConfig()->getNode('global/blocks/adminhtml/rewrite/sales_order_grid');
-
-        if ($rewriteNode) {
-            $this->_currentOrderGridBlockClass = $rewriteNode;
-        }
-
-        return $this->_currentOrderGridBlockClass;
-    }
-
     public function coreBlockAbstractToHtmlAfter(Varien_Event_Observer $observer)
     {
         $block = $observer->getEvent()->getBlock();
+        $transport = $observer->getEvent()->getTransport();
 
-        switch ($block->getNameInLayout()) {
-            case "order_info":
-                $transport = $observer->getEvent()->getTransport();
-                $html = $transport->getHtml();
-                $customColor = Mage::helper('theextensionlab_statuscolors')->getStatusColor(
-                    $block->getOrder()->getStatus()
-                );
-                $html = preg_replace(
-                    '/id="order_status"/',
-                    '$0  class="custom-color" style="background-color:' . $customColor . ';"',
-                    $html
-                );
+        if($this->_isOrderInfoBlock($block)){
+            $customColor = Mage::helper('theextensionlab_statuscolors')->getStatusColor(
+                $block->getOrder()->getStatus()
+            );
 
-                $transport->setHtml($html);
-                break;
+            $html = $this->_addBackgroundColorToStatusElement($transport->getHtml(),$customColor);
+
+            $transport->setHtml($html);
         }
 
         return $this;
     }
 
-    public function getHelper()
+    private function _addBackgroundColorToStatusElement($html,$backgroundColor){
+        $html = preg_replace(
+            '/id="order_status"/',
+            '$0  class="custom-color" style="background-color:' . $backgroundColor . ';"',
+            $html
+        );
+        return $html;
+    }
+
+    private function _isOrderInfoBlock($block){
+        return $block->getNameInLayout() == "order_info";
+    }
+
+    protected function getHelper()
     {
         return Mage::helper('theextensionlab_statuscolors');
     }
