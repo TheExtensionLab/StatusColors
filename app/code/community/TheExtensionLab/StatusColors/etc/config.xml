@@ -17,7 +17,7 @@
     <global>
 
         <helpers>
-            <theextensionlab_statuscolors>vagrant up;vagrant ssh
+            <theextensionlab_statuscolors>
                 <class>TheExtensionLab_StatusColors_Helper</class>
             </theextensionlab_statuscolors>
         </helpers>
