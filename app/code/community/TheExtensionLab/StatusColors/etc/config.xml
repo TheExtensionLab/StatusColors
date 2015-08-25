@@ -10,14 +10,14 @@
 <config>
     <modules>
         <TheExtensionLab_StatusColors>
-            <version>1.3.0</version>
+            <version>1.3.1</version>
         </TheExtensionLab_StatusColors>
     </modules>
 
     <global>
 
         <helpers>
-            <theextensionlab_statuscolors>
+            <theextensionlab_statuscolors>vagrant up;vagrant ssh
                 <class>TheExtensionLab_StatusColors_Helper</class>
             </theextensionlab_statuscolors>
         </helpers>
