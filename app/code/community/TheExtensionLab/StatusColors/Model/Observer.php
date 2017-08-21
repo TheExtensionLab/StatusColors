@@ -19,8 +19,17 @@ class TheExtensionLab_StatusColors_Model_Observer
 
         $this->_catchRewrittenOrderGridThatDoesntExtendOriginalClass();
 
-        if ($this->_isBlockOrderGrid($block)) {
-            $this->_addDecorateStatusFrameCallback($block->getColumn('status'));
+        if ($this->_isBlockOrderGrid($block)) 
+		{
+			$order_status= Mage::getStoreConfig('admin/order_grid/orders_status_index');
+				if($order_status)
+				{
+					$this->_addDecorateStatusFrameCallback($block->getColumn($order_status));
+				}
+				else
+				{
+					$this->_addDecorateStatusFrameCallback($block->getColumn('status'));
+				}
             return $this;
         }
 

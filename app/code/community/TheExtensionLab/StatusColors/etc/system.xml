@@ -38,6 +38,16 @@
                             <show_in_store>0</show_in_store>
                             <tooltip><![CDATA[Turning on this option will colour the background of the whole row rather than just the status label.]]></tooltip>
                         </color_whole_row>
+						 <orders_status_index>
+                            <label>Column Index</label>
+                            <frontend_type>text</frontend_type>
+							<comment>This is used to to fix extension conflicts when the status column index is changed. Onty edit if you know what your doing.</comment>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                      
+                        </orders_status_index>
                     </fields>
                 </order_grid>
             </groups>
