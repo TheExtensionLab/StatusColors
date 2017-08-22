@@ -124,7 +124,7 @@ class TheExtensionLab_StatusColors_Model_Observer
    private function _getOrderStatusIndex($index)
 	{
 	   
-	   if($this->_isOrderStatusIndex())
+	   if(Mage::getStoreConfig('admin/order_grid/orders_status_index'))
 		{	
 			return Mage::getStoreConfig('admin/order_grid/orders_status_index');
 		}
