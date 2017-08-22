@@ -20,15 +20,8 @@ class TheExtensionLab_StatusColors_Model_Observer
         $this->_catchRewrittenOrderGridThatDoesntExtendOriginalClass();
 
         if ($this->_isBlockOrderGrid($block)) 
-		{
-				if($this->_isOrderStatusIndex())
-				{	
-					$this->_addDecorateStatusFrameCallback($block->getColumn($this->_isOrderStatusIndex()));
-				}
-				else
-				{
-					$this->_addDecorateStatusFrameCallback($block->getColumn('status'));
-				}
+	{
+		$this->_addDecorateStatusFrameCallback($block->getColumn($this->_getOrderStatusIndex()));
             return $this;
         }
 
@@ -128,9 +121,15 @@ class TheExtensionLab_StatusColors_Model_Observer
     private function _isOrderInfoBlock($block){
         return $block->getNameInLayout() == "order_info";
     }
-	private function _isOrderStatusIndex($index)
+   private function _getOrderStatusIndex($index)
 	{
-        return Mage::getStoreConfig('admin/order_grid/orders_status_index');
+	   
+	   if($this->_isOrderStatusIndex())
+		{	
+			return Mage::getStoreConfig('admin/order_grid/orders_status_index');
+		}
+	   
+        return 'status'
     }
     protected function getHelper()
     {
