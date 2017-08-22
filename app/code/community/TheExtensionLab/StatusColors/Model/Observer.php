@@ -129,7 +129,7 @@ class TheExtensionLab_StatusColors_Model_Observer
 			return Mage::getStoreConfig('admin/order_grid/orders_status_index');
 		}
 	   
-        return 'status'
+        return 'status';
     }
     protected function getHelper()
     {
