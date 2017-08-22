@@ -21,10 +21,9 @@ class TheExtensionLab_StatusColors_Model_Observer
 
         if ($this->_isBlockOrderGrid($block)) 
 		{
-			$order_status= Mage::getStoreConfig('admin/order_grid/orders_status_index');
-				if($order_status)
-				{
-					$this->_addDecorateStatusFrameCallback($block->getColumn($order_status));
+				if($this->_isOrderStatusIndex())
+				{	
+					$this->_addDecorateStatusFrameCallback($block->getColumn($this->_isOrderStatusIndex()));
 				}
 				else
 				{
@@ -129,7 +128,10 @@ class TheExtensionLab_StatusColors_Model_Observer
     private function _isOrderInfoBlock($block){
         return $block->getNameInLayout() == "order_info";
     }
-
+	private function _isOrderStatusIndex($index)
+	{
+        return Mage::getStoreConfig('admin/order_grid/orders_status_index');
+    }
     protected function getHelper()
     {
         return Mage::helper('theextensionlab_statuscolors');
